@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" role="img" aria-label="Deux modules reliés, une donnée passe de l'un à l'autre">
+  <path d="M46 60 C70 60 90 60 114 60" fill="none" stroke="#6E1FFF" stroke-opacity=".5" stroke-width="3" stroke-dasharray="4 6" stroke-linecap="round"/>
+  <rect x="8" y="38" width="42" height="44" rx="10" fill="#fff" stroke="#6E1FFF" stroke-width="3"/>
+  <rect x="110" y="38" width="42" height="44" rx="10" fill="#fff" stroke="#6E1FFF" stroke-width="3"/>
+  <circle cx="29" cy="60" r="7" fill="#6E1FFF"/>
+  <circle cx="131" cy="60" r="7" fill="#6E1FFF"/>
+  <rect x="68" y="53" width="24" height="14" rx="4" fill="#6E1FFF"/>
+  <rect x="73" y="58" width="14" height="2.5" rx="1.2" fill="#fff"/>
+</svg>

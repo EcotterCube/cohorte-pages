@@ -6,5 +6,5 @@ const sortie = document.getElementById('total');
 
 bouton.addEventListener('click', () => {
   total += 1;
-  sortie.textContent = total + (total > 1 ? ' loutres' : ' loutre') + ' pour l’instant.';
+  sortie.textContent = total + (total > 1 ? ' données envoyées' : ' donnée envoyée') + ' pour l’instant.';
 });
