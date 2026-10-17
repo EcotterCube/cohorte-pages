@@ -1,9 +1,11 @@
 // Contrôle d'une Pull Request du dépôt des pages. Aide à la relecture, ne la remplace pas :
 // c'est le gardien qui décide de fusionner.
-// Variables : BASE_SHA, HEAD_SHA, PR_AUTEUR (pseudo GitHub de la personne qui ouvre la PR).
+// Variables : BASE_SHA, HEAD_SHA, PR_AUTEUR (pseudo GitHub de la personne qui ouvre la PR), PROPRIETAIRE (propriétaire du dépôt).
+// Le propriétaire (le gardien) peut aussi toucher aux modèles, à la documentation et à .github/, et aux pages de tout le monde.
 const { execSync } = require('child_process');
 
 const base = process.env.BASE_SHA, head = process.env.HEAD_SHA, auteur = (process.env.PR_AUTEUR || '').toLowerCase();
+const gardien = Boolean(process.env.PROPRIETAIRE) && auteur === process.env.PROPRIETAIRE.toLowerCase();
 if (!base || !head || !auteur) { console.error('Variables manquantes : BASE_SHA, HEAD_SHA, PR_AUTEUR'); process.exit(2); }
 
 const EXT = new Set(['html', 'css', 'js', 'mjs', 'json', 'txt', 'md', 'png', 'jpg', 'jpeg', 'gif', 'webp', 'svg', 'ico', 'woff', 'woff2', 'mp3', 'wav', 'ogg', 'mp4', 'webm']);
@@ -26,9 +28,10 @@ function ouverte(login, slug) {
 
 for (const { statut, chemin } of touches) {
   const m = RE.exec(chemin);
+  if (!m && gardien && /^(modeles\/|\.github\/|[^/]+\.md$)/.test(chemin)) continue;
   if (!m) { err(`« ${chemin} » est hors de pages/ton-pseudo/nom-de-ta-page/. Seul ce dossier est accepté.`); continue; }
   const [, login, slug, reste] = m;
-  if (login !== auteur && !ouverte(login, slug)) {
+  if (login !== auteur && !gardien && !ouverte(login, slug)) {
     err(`« ${chemin} » est dans le dossier de ${login}. Tu ne peux modifier que pages/${auteur}/, ou une page que son auteur a ouverte (meta.json avec "ouverte": true).`);
   }
   const segments = reste.split('/');
