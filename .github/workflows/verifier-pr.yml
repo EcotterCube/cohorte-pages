@@ -1,6 +1,8 @@
 name: Contrôle de la PR
+# pull_request_target : le contrôle utilise toujours la version de la branche principale, jamais celle de la PR.
+# Il ne lit la PR qu'avec git (liste des fichiers, modes, tailles) : aucun code de la PR n'est exécuté.
 on:
-  pull_request:
+  pull_request_target:
     branches: [main]
 permissions:
   contents: read
@@ -11,9 +13,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Récupérer la PR (lecture seule)
+        run: git fetch origin "refs/pull/${{ github.event.pull_request.number }}/head"
       - name: Vérifier les fichiers de la PR
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
           PR_AUTEUR: ${{ github.event.pull_request.user.login }}
+          PROPRIETAIRE: ${{ github.repository_owner }}
         run: node .github/verifier-pr.js
