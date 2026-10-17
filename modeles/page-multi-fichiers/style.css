@@ -1,0 +1,28 @@
+/* Les variables --brand-* viennent de ton brand.md si tu en ajoutes un. Les valeurs après la virgule servent de secours. */
+:root {
+  --fond: var(--brand-bg, #fbf9ff);
+  --texte: var(--brand-text, #1d1d23);
+  --primaire: var(--brand-primary, #6e1fff);
+  --sur-primaire: var(--brand-on-primary, #fff);
+  --arrondi: var(--brand-radius, 1.25rem);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--brand-font-text, system-ui, sans-serif);
+  background: var(--fond);
+  color: var(--texte);
+  line-height: 1.6;
+}
+main { max-width: 34rem; margin: 0 auto; padding: 2.5rem 1.2rem; text-align: center; }
+h1 { font-family: var(--brand-font-title, system-ui, sans-serif); }
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  border-radius: var(--arrondi);
+  background: var(--primaire);
+  color: var(--sur-primaire);
+  padding: 0.8rem 1.6rem;
+}
+button:focus-visible { outline: 3px solid var(--primaire); outline-offset: 3px; }

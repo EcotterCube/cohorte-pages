@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ma page à plusieurs fichiers</title>
+  <meta name="description" content="Un modèle avec une feuille de style, un script et une image.">
+  <!-- Les fichiers se chargent avec des chemins relatifs : ils sont dans le même dossier que cette page. -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <img src="images/loutre.svg" alt="Une loutre qui sourit" width="160" height="160">
+    <h1>Bonjour la cohorte !</h1>
+    <p>Cette page est faite de trois fichiers : <code>index.html</code>, <code>style.css</code> et <code>script.js</code>, plus une image.</p>
+    <button id="clic" type="button">Compter les loutres</button>
+    <p id="total" aria-live="polite">0 loutre pour l'instant.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
